@@ -1,0 +1,51 @@
+doctype html
+head
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(href='https://fonts.googleapis.com/css2?family=Sacramento&display=swap' rel='stylesheet')
+  link(rel='StyleSheet' href='css/styles.css' type='text/css')
+header
+  nav
+    ul
+      li
+        a(href='/') Home
+      li |
+      li
+        a(href='#') Blog
+           li#register-link
+            a(href='#') Register
+main
+  section#intro-text
+    span Simple Kitchen
+    h3
+      | Simple &amp; Comforting 
+      br
+      |             Recipes All Year Round
+    p Pan-seared chicken, Grill shrimp, mac &amp; cheese&mdash;need we say more?
+    button.submit-buttton View Recipes
+  section#intro-image
+    img(src='images/louisiana-barbecued-shrimp.webp' alt='Louisiana Barbecued Shrimp')
+footer
+  | &copy; Copyright 2021
+script.
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('register-link').addEventListener('click', function(event) {
+      event.preventDefault();
+      document.getElementById('intro-image').innerHTML = `
+        <div class="registration-form">
+          <h1>Register to Subscribe</h1>
+          <form action="." method="POST" class="form-registration">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" class="form-control" >
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary registerBtn">Register</button>
+          </form>
+        </div>
+      `;
+    });
+  });
+
