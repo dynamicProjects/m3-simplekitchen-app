@@ -99,7 +99,8 @@ footer {
   }
   
   input[type="text"],
-  input[type="email"] {
+  input[type="email"],
+  input[type="password"] {
     width: 376px;
     padding: 10px;
     border: 1px solid #ccc;

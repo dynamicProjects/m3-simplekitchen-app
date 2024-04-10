@@ -7,17 +7,23 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Registration = mongoose.model('Registration')
-const {check, validationResult} = require('express-validator')
+const {check, validationResult} = require('express-validator');
+const bcrypt = require('bcrypt');
+
 
 router.get('/', function(req, res){
 res.render('index', {title: 'Registration form'});
 })
 
 //  post document code 
-router.post('/',[check('name').isLength({min:1}).withMessage('Please enter an email')], function(req, res){
+router.post('/',[check('name').isLength({min:1}).withMessage('Please enter an email')], async function(req, res){
     const error = validationResult(req);
     if(error.isEmpty()){
         const registration = new Registration(req.body);
+        // generate salt to hash password
+        const salt = await bcrypt.genSalt(10);
+        // set user password to hashed password
+        registration.password = await bcrypt.hash(registration.password, salt);
         registration.save()
         .then(() => {res.send('Thank you for registration!'); })
     }else{

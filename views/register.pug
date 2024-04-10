@@ -7,9 +7,13 @@ block content
             tr 
                 th Name
                 th Email
+                th UserName
+                th Password
             each registration in registrations
                 tr
                     td= registration.name 
                     td= registration.email
+                    td= registration.username
+                    td= registration.password
     else
         p No registartions yet : (
